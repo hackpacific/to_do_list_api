@@ -147,10 +147,3 @@ rails s
 ```
 
 Visit localhost:3000 to see the homepage
-# Twitter Project
-
-To start server:
-
-```
-rails s
-```
