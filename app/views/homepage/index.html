@@ -1,28 +1,118 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12">
-      <h2 id="title" class="text-center">Todos</h2>
-      <div class="row">
-        <div class='col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3'>
-          <div id="todo-list-wrapper">
-            <div id="input-wrapper">
-              <span id="toggle-all"></span>
-              <input id='task-input' class="form-control" placeholder='What needs to be done?' autocomplete="off">
-            </div>
-            <div id='todo-list'>
-            </div>
-            <div id="footer">
-              <span><span id="active-tasks"></span> items left</span>
-              <ul>
-                <li class="filter-button" id="All">All</li>
-                <li class="filter-button" id="Active">Active</li>
-                <li class="filter-button" id="Completed">Completed</li>
-              </ul>
-              <span id="clear-completed">Clear completed</span>
-            </div>
-          </div>
-        </div>
-      </div>
+      <h2 id="title" class="text-center">To Do List Api</h2>
+      <p>Try the To Do List <a href="/demo">DEMO</a>.</p>
+      <p>Before you start, create a new user account by sending a post request to '/users'. It will return an object like this:</p>
+      <pre><code>{ success: true, id: 1 }</code></pre>
+      <p>The id will be your api_key for making requests to the following tasks endpoints.</p>
+      <h3>Tasks</h3>
+      <table class="table" style="overflow: scroll; min-width: 800px;">
+        <thead>
+          <tr>
+            <td>URI</td>
+            <td>Type</td>
+            <td>Description</td>
+            <td>Request Body</td>
+            <td>Sample Response</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>/tasks?api_key=your_user_id</td>
+            <td>GET</td>
+            <td>Returns an object with a tasks property that contains an array of tasks belonging to you.</td>
+            <td>N/A</td>
+            <td>
+<pre>{
+  tasks: [
+    { id: 1,
+      content: 'A to do list task',
+      complete: 'false',
+      created_at: DateObject
+    },
+    { id: 2,
+      content: 'Another to do list task',
+      complete: 'true',
+      created_at: DateObject
+    },
+  ]
+}</pre>
+            </td>
+          </tr>
+          <tr>
+            <td>/tasks?api_key=your_user_id</td>
+            <td>POST</td>
+            <td>Creates a new task under your user account.</td>
+            <td>
+<pre>{
+  task: {
+    content: 'This is a task'
+  }
+}
+</pre>
+            </td>
+            <td>
+<pre>{
+  task: {
+    id: 1,
+    content: 'This is a task',
+    complete: 'false',
+    created_at: DateObject
+  }
+}</pre>
+            </td>
+          </tr>
+          <tr>
+            <td>/tasks/:id/mark_complete?api_key=your_user_id</td>
+            <td>PUT</td>
+            <td>Mark the complete property to true for the task specified by id.</td>
+            <td>N/A
+            </td>
+            <td>
+<pre>{
+  task: {
+    id: 1,
+    content: 'This is a task',
+    complete: 'true',
+    created_at: DateObject,
+    updated_at: DateObject
+  }
+}</pre>
+            </td>
+          </tr>
+          <tr>
+            <td>/tasks/:id/mark_active?api_key=your_user_id</td>
+            <td>PUT</td>
+            <td>Mark the complete property to false for the task specified by id.</td>
+            <td>N/A
+            </td>
+            <td>
+<pre>{
+  task: {
+    id: 1,
+    content: 'This is a task',
+    complete: 'false',
+    created_at: DateObject,
+    updated_at: DateObject
+  }
+}</pre>
+            </td>
+          </tr>
+          <tr>
+            <td>/tasks/:id?api_key=your_user_id</td>
+            <td>DELETE</td>
+            <td>Delete the task specified by id.</td>
+            <td>N/A
+            </td>
+            <td>
+<pre>{
+  success: true
+}</pre>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>

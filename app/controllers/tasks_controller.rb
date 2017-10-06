@@ -1,11 +1,15 @@
 class TasksController < ApplicationController
+  before_action :validate_user
+
   def index
-    @tasks = Task.all
+    user = User.find_by(id: params[:api_key])
+    @tasks = user.tasks.all
     render 'tasks/index' # can be omitted
   end
 
   def create
-    @task = Task.new(task_params)
+    user = User.find_by(id: params[:api_key])
+    @task = user.tasks.new(task_params)
 
     if @task.save
       render 'tasks/create' # can be omitted
@@ -13,7 +17,8 @@ class TasksController < ApplicationController
   end
 
   def destroy
-    @task = Task.find_by(id: params[:id])
+    user = User.find_by(id: params[:api_key])
+    @task = user.tasks.find_by(id: params[:id])
 
     if @task and @task.destroy
       render json: { success: true }
@@ -23,7 +28,8 @@ class TasksController < ApplicationController
   end
 
   def mark_complete
-    @task = Task.find_by(id: params[:id])
+    user = User.find_by(id: params[:api_key])
+    @task = user.tasks.find_by(id: params[:id])
 
     if @task and @task.update(completed: true)
       render 'tasks/update'
@@ -31,7 +37,8 @@ class TasksController < ApplicationController
   end
 
   def mark_active
-    @task = Task.find_by(id: params[:id])
+    user = User.find_by(id: params[:api_key])
+    @task = user.tasks.find_by(id: params[:id])
 
     if @task and @task.update(completed: false)
       render 'tasks/update'
@@ -40,7 +47,18 @@ class TasksController < ApplicationController
 
   private
 
-    def task_params
-      params.require(:task).permit(:content)
+  def task_params
+    params.require(:task).permit(:content)
+  end
+
+  def validate_user
+    user = User.find(params[:api_key])
+    return render json: { success: false }, status: :unauthorized unless user
+
+    if user
+      return true
+    else
+      return false
     end
+  end
 end
