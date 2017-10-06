@@ -31,20 +31,20 @@ Tasks
       <td>Returns an object with a tasks property that contains an array of tasks belonging to you.</td>
       <td>N/A</td>
       <td>
-        <pre>{
-          tasks: [
-            { id: 1,
-              content: 'A to do list task',
-              complete: 'false',
-              created_at: DateObject
-            },
-            { id: 2,
-              content: 'Another to do list task',
-              complete: 'true',
-              created_at: DateObject
-            },
-          ]
-        }</pre>
+<pre>{
+  tasks: [
+    { id: 1,
+      content: 'A to do list task',
+      complete: 'false',
+      created_at: DateObject
+    },
+    { id: 2,
+      content: 'Another to do list task',
+      complete: 'true',
+      created_at: DateObject
+    },
+  ]
+}</pre>
       </td>
     </tr>
     <tr>
@@ -52,22 +52,22 @@ Tasks
       <td>POST</td>
       <td>Creates a new task under your user account.</td>
       <td>
-        <pre>{
-          task: {
-            content: 'This is a task'
-          }
-        }
-        </pre>
+<pre>{
+  task: {
+    content: 'This is a task'
+  }
+}
+</pre>
       </td>
       <td>
-        <pre>{
-          task: {
-            id: 1,
-            content: 'This is a task',
-            complete: 'false',
-            created_at: DateObject
-          }
-        }</pre>
+<pre>{
+  task: {
+    id: 1,
+    content: 'This is a task',
+    complete: 'false',
+    created_at: DateObject
+  }
+}</pre>
       </td>
     </tr>
     <tr>
@@ -77,15 +77,15 @@ Tasks
       <td>N/A
       </td>
       <td>
-        <pre>{
-          task: {
-            id: 1,
-            content: 'This is a task',
-            complete: 'true',
-            created_at: DateObject,
-            updated_at: DateObject
-          }
-        }</pre>
+<pre>{
+  task: {
+    id: 1,
+    content: 'This is a task',
+    complete: 'true',
+    created_at: DateObject,
+    updated_at: DateObject
+  }
+}</pre>
       </td>
     </tr>
     <tr>
@@ -95,15 +95,15 @@ Tasks
       <td>N/A
       </td>
       <td>
-        <pre>{
-          task: {
-            id: 1,
-            content: 'This is a task',
-            complete: 'false',
-            created_at: DateObject,
-            updated_at: DateObject
-          }
-        }</pre>
+<pre>{
+  task: {
+    id: 1,
+    content: 'This is a task',
+    complete: 'false',
+    created_at: DateObject,
+    updated_at: DateObject
+  }
+}</pre>
       </td>
     </tr>
     <tr>
@@ -113,9 +113,9 @@ Tasks
       <td>N/A
       </td>
       <td>
-        <pre>{
-          success: true
-        }</pre>
+<pre>{
+  success: true
+}</pre>
       </td>
     </tr>
   </tbody>
