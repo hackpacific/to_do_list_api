@@ -12,7 +12,7 @@ Before you start, create a new user account by sending a post request to '/users
 
 The id will be your api_key for making requests to the following tasks endpoints.
 
-Tasks
+#### Tasks
 
 <table>
   <thead>
@@ -36,12 +36,16 @@ Tasks
     { id: 1,
       content: 'A to do list task',
       complete: 'false',
-      created_at: DateObject
+      due: datetime,
+      updated_at: datetime,
+      created_at: datetime
     },
     { id: 2,
       content: 'Another to do list task',
       complete: 'true',
-      created_at: DateObject
+      due: datetime,
+      updated_at: datetime,
+      created_at: datetime
     },
   ]
 }</pre>
@@ -54,7 +58,9 @@ Tasks
       <td>
 <pre>{
   task: {
-    content: 'This is a task'
+    content: 'This is a task',
+    due: 'Sat Oct 21 2017
+    14:05:00 GMT+0800 (HKT)'
   }
 }
 </pre>
@@ -65,7 +71,34 @@ Tasks
     id: 1,
     content: 'This is a task',
     complete: 'false',
-    created_at: DateObject
+    due: '2017-10-21T06:01:02.000Z',
+    created_at: '2017-10-21T06:00:07.065Z'
+  }
+}</pre>
+      </td>
+    </tr>
+    <tr>
+    <td>/tasks/:id?api_key=your_user_id</td>
+    <td>PUT</td>
+    <td>Update the content or due time of the task specified by id.</td>
+    <td>
+<pre>{
+  task: {
+    content: 'This is not a task',
+    due: 'Sat Oct 21 2017
+    14:09:38 GMT+0800 (HKT)',
+  }
+}</pre>
+    </td>
+    <td>
+<pre>{
+  task: {
+    id: 1,
+    content: 'This is not a task',
+    complete: 'true',
+    due: '2017-10-21T06:09:38.000Z',
+    created_at: '2017-10-21T06:00:07.065Z',
+    updated_at: '2017-10-21T06:09:54.730Z'
   }
 }</pre>
       </td>
@@ -82,6 +115,7 @@ Tasks
     id: 1,
     content: 'This is a task',
     complete: 'true',
+    due: datetime,
     created_at: DateObject,
     updated_at: DateObject
   }
@@ -100,6 +134,7 @@ Tasks
     id: 1,
     content: 'This is a task',
     complete: 'false',
+    due: datetime,
     created_at: DateObject,
     updated_at: DateObject
   }
@@ -121,6 +156,9 @@ Tasks
   </tbody>
 </table>
 
+### Datetime
+Datetime objects are stored in UTC time.
+
 ## DEMO
 
 The To Do List Demo is located at /demo. It uses the user id 1 to make requests.
@@ -137,7 +175,13 @@ bundle
 Create the database
 
 ```
-rake db:create
+rails db:create
+```
+
+Migrate the database
+
+```
+rails db:create
 ```
 
 Start server:

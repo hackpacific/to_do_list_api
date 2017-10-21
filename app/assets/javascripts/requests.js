@@ -12,6 +12,7 @@ function Request() {
 //---------------------- Tasks -----------------------
 
 //------------------- Create a Task --------------------
+
 function postTask(content, successCB, errorCB) {
   var newRequest = new Request();
   newRequest['type'] = 'POST';
@@ -90,6 +91,23 @@ function markTaskAsActive(id, successCB, errorCB) {
   var newRequest = new Request();
   newRequest['type'] = 'PUT';
   newRequest['url'] = 'tasks/' + id + '/mark_active?api_key=1';
+  newRequest['xhrFields'] = { 'withCredentials': true };
+  newRequest['success'] = function(response){
+    return successCB(response);
+  };
+  newRequest['error'] = function(request, errorMsg){
+    return errorCB(request, errorMsg);
+  };
+
+  $.ajax(newRequest);
+};
+
+//------------------- Create a Task --------------------
+
+function postUser(successCB, errorCB) {
+  var newRequest = new Request();
+  newRequest['type'] = 'POST';
+  newRequest['url'] = 'users';
   newRequest['xhrFields'] = { 'withCredentials': true };
   newRequest['success'] = function(response){
     return successCB(response);

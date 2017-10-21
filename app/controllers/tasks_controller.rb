@@ -27,6 +27,15 @@ class TasksController < ApplicationController
     end
   end
 
+  def update
+    user = User.find_by(id: params[:api_key])
+    @task = user.tasks.find_by(id: params[:id])
+
+    if @task and @task.update(task_params)
+      render 'tasks/update'
+    end
+  end
+
   def mark_complete
     user = User.find_by(id: params[:api_key])
     @task = user.tasks.find_by(id: params[:id])
@@ -48,7 +57,7 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:content)
+    params.require(:task).permit(:content, :due)
   end
 
   def validate_user
