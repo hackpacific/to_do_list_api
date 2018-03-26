@@ -102,7 +102,7 @@ function markTaskAsActive(id, successCB, errorCB) {
   $.ajax(newRequest);
 };
 
-//------------------- Create a Task --------------------
+//------------------- Create a User --------------------
 
 function postUser(successCB, errorCB) {
   var newRequest = new Request();

@@ -20,7 +20,7 @@ class TasksController < ApplicationController
     @task = user.tasks.new(task_params)
 
     return render 'tasks/bad_request', status: :bad_request if not @task.save
-    render 'tasks/create', status: :created
+    render 'tasks/show', status: :ok
   end
 
   def destroy
