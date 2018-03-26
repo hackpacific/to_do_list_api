@@ -46,6 +46,24 @@
             </td>
           </tr>
           <tr>
+            <td>/tasks/:id?api_key=your_user_id</td>
+            <td>GET</td>
+            <td>Returns an object with a task property that contains a single task belonging to you that matches the id.</td>
+            <td>N/A</td>
+            <td>
+<pre>{
+  task: {
+    id: 1,
+    content: 'A to do list task',
+    complete: 'false',
+    due: datetime,
+    updated_at: datetime,
+    created_at: datetime
+  },
+}</pre>
+            </td>
+          </tr>
+          <tr>
             <td>/tasks?api_key=your_user_id</td>
             <td>POST</td>
             <td>Creates a new task under your user account.</td>

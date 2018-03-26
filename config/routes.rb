@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   # Add routes below this line
   resources :users, only: [:create]
 
+  get    'tasks/:id'                => 'tasks#show'
   get    'tasks'                    => 'tasks#index'
   post   'tasks'                    => 'tasks#create'
   put    'tasks/:id'                => 'tasks#update'
