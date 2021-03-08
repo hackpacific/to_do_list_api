@@ -1,0 +1,175 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <h2 id="title" class="text-center">To Do List Api</h2>
+      <p>Try the To Do List <a href="/demo">DEMO</a>.</p>
+      <p>Before you start, create a new user account by sending a post request to '/users'. Or, click the create user button below. It will return an object like this:</p>
+      <pre><code>{ success: true, id: 1 }</code></pre>
+      <p>The id will be your api_key for making requests to the following tasks endpoints.</p>
+      <pre><code><button id="create-user">Create User</button><span id="user-response"></span></code></pre>
+      <h3>Tasks</h3>
+      <table class="table" style="overflow: scroll; min-width: 800px;">
+        <thead>
+          <tr>
+            <td>URI</td>
+            <td>Type</td>
+            <td>Description</td>
+            <td>Request Body</td>
+            <td>Sample Response</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>/tasks?api_key=your_user_id</td>
+            <td>GET</td>
+            <td>Returns an object with a tasks property that contains an array of tasks belonging to you.</td>
+            <td>N/A</td>
+            <td>
+<pre>{
+  tasks: [
+    { id: 1,
+      content: 'A to do list task',
+      completed: 'false',
+      due: datetime,
+      updated_at: datetime,
+      created_at: datetime
+    },
+    { id: 2,
+      content: 'Another to do list task',
+      completed: 'true',
+      due: datetime,
+      updated_at: datetime,
+      created_at: datetime
+    },
+  ]
+}</pre>
+            </td>
+          </tr>
+          <tr>
+            <td>/tasks/:id?api_key=your_user_id</td>
+            <td>GET</td>
+            <td>Returns an object with a task property that contains a single task belonging to you that matches the id.</td>
+            <td>N/A</td>
+            <td>
+<pre>{
+  task: {
+    id: 1,
+    content: 'A to do list task',
+    completed: 'false',
+    due: datetime,
+    updated_at: datetime,
+    created_at: datetime
+  },
+}</pre>
+            </td>
+          </tr>
+          <tr>
+            <td>/tasks?api_key=your_user_id</td>
+            <td>POST</td>
+            <td>Creates a new task under your user account.</td>
+            <td>
+<pre>{
+  task: {
+    content: 'This is a task',
+    due: 'Sat Oct 21 2017
+    14:05:00 GMT+0800 (HKT)'
+  }
+}
+</pre>
+            </td>
+            <td>
+<pre>{
+  task: {
+    id: 1,
+    content: 'This is a task',
+    completed: 'false',
+    due: '2017-10-21T06:01:02.000Z',
+    created_at: '2017-10-21T06:00:07.065Z'
+    updated_at: '2017-10-21T06:00:07.065Z'
+  }
+}</pre>
+            </td>
+          </tr>
+          <tr>
+            <td>/tasks/:id?api_key=your_user_id</td>
+            <td>PUT</td>
+            <td>Update the content or due time of the task specified by id.</td>
+            <td>
+<pre>{
+  task: {
+    content: 'This is not a task',
+    due: 'Sat Oct 21 2017
+    14:09:38 GMT+0800 (HKT)',
+  }
+}</pre>
+            </td>
+            <td>
+<pre>{
+  task: {
+    id: 1,
+    content: 'This is not a task',
+    completed: 'true',
+    due: '2017-10-21T06:09:38.000Z',
+    created_at: '2017-10-21T06:00:07.065Z',
+    updated_at: '2017-10-21T06:09:54.730Z'
+  }
+}</pre>
+            </td>
+          </tr>
+          <tr>
+            <td>/tasks/:id/mark_complete?api_key=your_user_id</td>
+            <td>PUT</td>
+            <td>Mark the complete property to true for the task specified by id.</td>
+            <td>N/A
+            </td>
+            <td>
+<pre>{
+  task: {
+    id: 1,
+    content: 'This is a task',
+    completed: 'true',
+    due: datetime,
+    created_at: datetime,
+    updated_at: datetime
+  }
+}</pre>
+            </td>
+          </tr>
+          <tr>
+            <td>/tasks/:id/mark_active?api_key=your_user_id</td>
+            <td>PUT</td>
+            <td>Mark the complete property to false for the task specified by id.</td>
+            <td>N/A
+            </td>
+            <td>
+<pre>{
+  task: {
+    id: 1,
+    content: 'This is a task',
+    completed: 'false',
+    due: datetime,
+    created_at: datetime,
+    updated_at: datetime
+  }
+}</pre>
+            </td>
+          </tr>
+          <tr>
+            <td>/tasks/:id?api_key=your_user_id</td>
+            <td>DELETE</td>
+            <td>Delete the task specified by id.</td>
+            <td>N/A
+            </td>
+            <td>
+<pre>{
+  success: true
+}</pre>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <h3>Datetime</h3>
+      <p>Datetime objects are stored in UTC time.</p>
+    </div>
+  </div>
+</div>
