@@ -25,5 +25,3 @@ production:
   adapter: postgresql
   encoding: unicode
   database: to_do_list_api_production
-  username: to_do_list_api
-  password: <%= ENV['MYAPP_DATABASE_PASSWORD'] %>
