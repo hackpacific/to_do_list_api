@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   def create
-    user = User.new()
+    user = User.new
 
     if user.save
       render json: { success: true, id: user.id }
